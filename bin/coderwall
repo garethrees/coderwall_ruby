@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+require 'pathname'
+bin_file = Pathname.new(__FILE__).realpath
+$:.unshift File.expand_path('../../lib', bin_file)
+require 'coderwall_ruby'
+
+
+if ARGV[0].nil?
+  puts '--> Please provide a username'
+  exit
+end
+
+if ARGV[1].nil?
+  puts '--> please provide an attribute'
+  exit
+end
+
+user      = ARGV[0]
+attribute = ARGV[1]
+
+puts CoderwallRuby::User.new(user).send(attribute)
